@@ -18,6 +18,17 @@
   <title>Title</title>
 </head>
 <body>
+
+<script type="text/javascript">
+    function Delete(id)
+    {
+        //var r = document.getElementById("tdId1").innerHTML;
+        var request = new XMLHttpRequest();
+        request.open("post", "http://localhost:8080/database?id="+id, true);
+        request.send();
+    }
+</script>
+
 <table>
     <tr><th>id</th>
         <th>Town</th>
@@ -34,7 +45,10 @@
         <th></th>
     </tr>
     <c:forEach var="logistic" items="${logistics}">
-        <tr><td> <a href="/entry/${logistic.id}">${logistic.id}</a></td> </tr>
+        <tr><td> <a href="/entry/${logistic.id}"  id="tdId1">
+
+                ${logistic.id}
+                </a></td>
         <td>${logistic.town}</td>
             <td>${logistic.representation}</td>
             <td>${logistic.route}</td>
@@ -44,11 +58,14 @@
             <td>${logistic.transport}</td>
             <td>${logistic.store}</td>
             <td>${logistic.status}</td>
+        <td>    <button  name="button" value="button3" onclick="Delete(${logistic.id})">Удалить</button> </td>
 
         </tr>
     </c:forEach>
 </table>
+
 <form action="${pageContext.request.contextPath}/database" method="post">
+
     Select status:
 <select name = "status">
     <c:forEach var="stat" items="${status}">
@@ -61,21 +78,21 @@
     <button type="submit" name="button" value="button1">Status</button>
     <button type="submit" name="button" value="button2">Sort</button>
 </form>
-<h2>counter</h2>
-<%
 
-    if (session.getAttribute("hit") != null){
+<%--<%--%>
 
-    String name = Integer.toString((Integer) session.getAttribute("hit"));
-        out.println(name);
-    }
-    for (Cookie cookie:request.getCookies()
-         ) {
-        System.out.println(cookie.getValue());
-    }
-  //  System.out.println(Arrays.toString(request.getCookies()));
+    <%--if (session.getAttribute("hit") != null){--%>
 
-%>
+    <%--String name = Integer.toString((Integer) session.getAttribute("hit"));--%>
+        <%--out.println(name);--%>
+    <%--}--%>
+    <%--for (Cookie cookie:request.getCookies()--%>
+         <%--) {--%>
+        <%--System.out.println(cookie.getValue());--%>
+    <%--}--%>
+  <%--//  System.out.println(Arrays.toString(request.getCookies()));--%>
+
+<%--%>--%>
 <h2>cookie</h2>
 
 <%

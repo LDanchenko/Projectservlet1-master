@@ -10,6 +10,8 @@ public class Database {
     private static String username = "root";
     private static String password = "ADIoda36819";
 
+
+
     public static Statement connect(){
 
         try {
@@ -217,7 +219,7 @@ public class Database {
 
             ResultSet resultSet = statement.executeQuery("SELECT o.id, o.town,  o.representation, o.route,  a.name AS address, g.name AS goods, c.name AS client, t.name AS transport, st.name AS store, s.name AS status  " +
                     "FROM orders o INNER JOIN addresses a ON o.address = a.id INNER JOIN goods g ON o.goods = g.id INNER JOIN clients c ON o.client = c.id  INNER JOIN transport t ON o.transport = t.id  " +
-                    " INNER JOIN stores st ON o.store = st.id INNER JOIN status s ON o.status = s.id WHERE o.id = 4");
+                    " INNER JOIN stores st ON o.store = st.id INNER JOIN status s ON o.status = s.id WHERE o.id = " + id);
             while(resultSet.next()){
 
                 Logistic log = new Logistic();
@@ -243,4 +245,18 @@ public class Database {
         }
         return logistics;
     }
+
+    public static void   DeleteById(Statement statement, Integer id)  {
+
+
+        try {
+
+            statement.executeUpdate("DELETE FROM orders WHERE orders.id = " + id);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

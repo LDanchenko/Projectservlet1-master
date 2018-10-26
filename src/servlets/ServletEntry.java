@@ -23,10 +23,8 @@ public class ServletEntry extends HttpServlet {
         }
 
         session.setAttribute("hit", hitnumber);
-        request.setAttribute("count", hitnumber);
+//        request.setAttribute("count", hitnumber);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/entry.jsp");
-        dispatcher.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

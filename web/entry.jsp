@@ -14,11 +14,11 @@
 </head>
 <body>
 <h2>counter</h2>
-<%
-    String name = (request.getAttribute("count")).toString();
-    out.println(name);
+<%--<%--%>
+    <%--String name = (request.getAttribute("count")).toString();--%>
+    <%--out.println(name);--%>
 
-%>
+<%--%>--%>
 <a href="/database">Назад</a>
 <table>
     <tr><th>id</th>
@@ -37,9 +37,9 @@
     </tr>
 
     <c:forEach var="lg" items="${requestScope.logistics}">
-        h
-        <tr><td> ${lg.id}</td> </tr>
-        <td>${lg.town}</td>
+
+        <td> ${lg.id}</td>
+        <td> <input type="hidden" id="town" value="${lg.town}"/></td>
         <td>${lg.representation}</td>
         <td>${lg.route}</td>
         <td>${lg.address}</td>
@@ -49,7 +49,7 @@
         <td>${lg.store}</td>
         <td>${lg.status}</td>
 
-        </tr>
+
     </c:forEach>
 </table>
 </body>
