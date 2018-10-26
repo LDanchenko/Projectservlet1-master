@@ -24,7 +24,23 @@ public class ServletEntry extends HttpServlet {
 
         session.setAttribute("hit", hitnumber);
 //        request.setAttribute("count", hitnumber);
+        String button = request.getParameter("button");
+        Statement statement = Database.connect();
+        if ("buttonEdit".equals(button)) {
+            String statusId = (request.getParameter("status").toString());
+//            request.setAttribute("status", statusId);
+//            ArrayList<Logistic> logistics = Database.selectByStatus(statement, statusId);
+//            request.setAttribute("logistics", logistics);
+//            ArrayList<String> status = Database.selectStatus(statement);
+//            request.setAttribute("status", status);
+//            request.setAttribute("count", hitnumber);
+            System.out.println(statusId + "  ");
+            String town = (request.getParameter("town").toString());
+            System.out.println(town + "  ");
 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/entry.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +73,21 @@ public class ServletEntry extends HttpServlet {
         Statement statement = Database.connect();
         ArrayList<Logistic> logistics = Database.selectById(statement, idOrder);
         request.setAttribute("logistics", logistics);
+
+        ArrayList<String> adr = Database.selectAdr(statement);
+        request.setAttribute("adrs", adr);
+
+        ArrayList<String> goods = Database.selectGoods(statement);
+        request.setAttribute("goods", goods);
+
+        ArrayList<String> clients = Database.selectClients(statement);
+        request.setAttribute("clients", clients);
+        ArrayList<String> transports = Database.selectTransport(statement);
+        request.setAttribute("transports", transports);
+        ArrayList<String> stores = Database.selectStore(statement);
+        request.setAttribute("stores", stores);
+        ArrayList<String> status = Database.selectStatus(statement);
+        request.setAttribute("status", status);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/entry.jsp");
         dispatcher.forward(request, response);

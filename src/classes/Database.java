@@ -258,5 +258,114 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public  static ArrayList<String> selectAdr(Statement statement) {
+
+        ArrayList <String> adr = new ArrayList <String>();
+        try{
+
+            ResultSet resultSet = statement.executeQuery("SELECT addresses.name from addresses");
+            while(resultSet.next()){
+
+                adr.add(resultSet.getString("name"));
+            }
+        }
+
+
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        return adr;
+    }
+
+    public  static ArrayList<String> selectGoods(Statement statement) {
+
+        ArrayList <String> goods = new ArrayList <String>();
+        try{
+
+            ResultSet resultSet = statement.executeQuery("SELECT goods.name from goods");
+            while(resultSet.next()){
+
+                goods.add(resultSet.getString("name"));
+            }
+        }
+
+
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        return goods;
+    }
+
+    public  static ArrayList<String> selectClients(Statement statement) {
+
+        ArrayList <String> result = new ArrayList <String>();
+        try{
+
+            ResultSet resultSet = statement.executeQuery("SELECT clients.name from clients");
+            while(resultSet.next()){
+
+                result.add(resultSet.getString("name"));
+            }
+        }
+
+
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        return result;
+    }
+
+    public  static ArrayList<String> selectTransport(Statement statement) {
+
+        ArrayList <String> result = new ArrayList <String>();
+        try{
+
+            ResultSet resultSet = statement.executeQuery("SELECT transport.name from transport");
+            while(resultSet.next()){
+
+                result.add(resultSet.getString("name"));
+            }
+        }
+
+
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        return result;
+    }
+
+    public  static ArrayList<String> selectStore(Statement statement) {
+
+        ArrayList <String> result = new ArrayList <String>();
+        try{
+
+            ResultSet resultSet = statement.executeQuery("SELECT stores.name from stores");
+            while(resultSet.next()){
+
+                result.add(resultSet.getString("name"));
+            }
+        }
+
+
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        return result;
+    }
+
+
+    public static void   updateRow(Statement statement, Integer id)  {
+
+
+        try {
+
+            statement.executeUpdate("DELETE FROM orders WHERE orders.id = " + id);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
